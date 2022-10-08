@@ -7,7 +7,7 @@ use App\Entity\News;
 use App\Entity\Pages;
 use App\Entity\Users;
 use App\Form\CookieFormType;
-use App\Service\CookieHandler;
+use App\Service\Cookie;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

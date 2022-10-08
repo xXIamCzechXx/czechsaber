@@ -10,7 +10,6 @@ twig:
         translator: '@app.translator'
         cookie: '@app.cookie'
 
-
 services:
     app.translator:
         public: true
@@ -20,7 +19,7 @@ services:
     app.cookie:
         public: true
         autowire: true
-        class: App\Service\CookieHandler
+        class: App\Service\Cookie
 
     app.user_normalizer:
         public: true
