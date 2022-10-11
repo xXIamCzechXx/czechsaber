@@ -4,11 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Pages;
 use App\Entity\User;
-use App\Service\ScoresaberApi;
-use PHPUnit\Util\Exception;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\ErrorHandler;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use App\Connector\ScoresaberApi;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

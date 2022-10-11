@@ -118,7 +118,7 @@ class SecurityController extends BaseController
 
     protected function getCaptcha($SecretKey)
     {
-        $Response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$this->getConstant('SECRET_KEY')."&response={$SecretKey}");
+        $Response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$this->translator->getValue('SECRET_KEY')."&response={$SecretKey}");
         $Return = json_decode($Response);
         return $Return;
     }

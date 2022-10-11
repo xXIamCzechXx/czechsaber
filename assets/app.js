@@ -48,6 +48,23 @@ function getCookie(name) {
 
 $(document).ready(function ()
 {
+    console.log('start');
+    $.ajax({
+        url: '/instagram-token',
+        method: 'POST'
+    }).then(function(response) {
+        console.log(response);
+        var userFeed = new Instafeed({
+            get: 'user',
+            target: "instafeed-container",
+            resolution: 'low_resolution',
+            limit: 4,
+            accessToken: response
+        });
+        userFeed.run();
+    });
+
+
     //File input js
     $('.custom-file-input').on('change', function(event) {
         var inputFile = event.currentTarget;

@@ -4,21 +4,13 @@ namespace App\Service;
 
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use App\Entity\Category;
-use App\Entity\Log;
-use App\Entity\Product;
-use App\Form\EditorProductEditFormType;
-use App\Repository\CategoryRepository;
-use App\Repository\ProductRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class UploadHelper
 {
-    public $uploadPaths;
+    /**
+     * @var string
+     */
+    private $uploadsPath;
 
     /**
      * @param $uploadsPath
@@ -28,7 +20,12 @@ class UploadHelper
         $this->uploadsPath = $uploadsPath;
     }
 
-
+    /**
+     * @param UploadedFile $uploadedFile
+     * @param string $dir
+     * @param null $oldFile
+     * @return string
+     */
     public function uploadImage(UploadedFile $uploadedFile, $dir = 'others', $oldFile = null): string
     {
         // kernel.project_dir odkazuje do rootu webu

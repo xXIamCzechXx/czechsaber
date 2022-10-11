@@ -2,15 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\Constants;
-use App\Entity\News;
-use App\Entity\Pages;
-use App\Entity\Product;
-use App\Entity\User;
+use App\Service\Translator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
-//require_once('../../legacy/config.php');
+// require_once('Config/config.php'); // Editor constants
+
+/**
+ * @author Dominik Mach
+ * This file is for global constants, that are used more often on more places around the web
+ */
 
 // Lang constants
 define('NO_RIGHTS', 'Nemáš dostatečná práva pro tuto akci');
@@ -55,35 +57,32 @@ define('SECRET_KEY', '6Lf7_UwaAAAAAHZfaEWmwI85R2-h30UJNEBERKlg');
 
 abstract class SharedController extends AbstractController
 {
-    public function __construct(EntityManagerInterface $em) {
+    /**
+     * @var EntityManagerInterface
+     */
+    protected $em;
+
+    /**
+     * @var Translator
+     */
+    protected $translator;
+
+    /**
+     * @param EntityManagerInterface $em
+     * @param Translator $translator
+     *
+     * This constructor says, what dependencies are available through all controllers
+     */
+    public function __construct(EntityManagerInterface $em, Translator $translator) {
         $this->em = $em;
-    }
-
-    protected function getConstants(): ?array
-    {
-        $constantsMapped = [];
-
-        if ($constants = $this->em->getRepository(Constants::class)->findAll()) {
-            foreach ($constants as $constant) {
-                $constantsMapped[$constant->getName()] = $constant->getValue();
-            }
-        }
-        return $constantsMapped;
-    }
-
-    protected function getConstant($name = null): ?string
-    {
-        if ($constant = $this->em->getRepository(Constants::class)->findOneBy(['name' => $name])) {
-            return $constant->getValue();
-        }
-        return '';
+        $this->translator = $translator;
     }
 
     /**
      * @param $string
      * @return bool
      */
-    public function hasNumber($string)
+    public function hasNumber($string): bool
     {
         return (bool)preg_match('@[0-9]@', $string);
     }
@@ -92,7 +91,7 @@ abstract class SharedController extends AbstractController
      * @param $string
      * @return bool
      */
-    public function hasUpperCase($string)
+    public function hasUpperCase($string): bool
     {
         return (bool)preg_match('@[A-Z]@', $string);
     }
@@ -101,7 +100,7 @@ abstract class SharedController extends AbstractController
      * @param $string
      * @return bool
      */
-    public function hasLowerCase($string)
+    public function hasLowerCase($string): bool
     {
         return (bool)preg_match('@[a-z]@', $string);
     }
@@ -110,9 +109,8 @@ abstract class SharedController extends AbstractController
      * @param $string
      * @return bool
      */
-    public function hasSpecialChars($string)
+    public function hasSpecialChars($string): bool
     {
         return (bool)preg_match('@[^\w]@', $string);
     }
-
 }

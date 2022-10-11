@@ -7,7 +7,7 @@ use App\Entity\News;
 use App\Entity\Pages;
 use App\Entity\Users;
 use App\Form\CookieFormType;
-use App\Service\CookieHandler;
+use App\Service\Cookie;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -70,5 +70,19 @@ class DefaultController extends BaseController
         $response->setContent($output);
 
         return $response;
+    }
+
+    /**
+     * @Route("/instagram-token", name="instagramToken")
+     */
+    public function instagramTokenAction(Request $request)
+    {
+        $response = new Response();
+        // This prevents from accessing route directrly from browser because this token is sensitive
+        if ($request->isXmlHttpRequest()) {
+            return $response->setContent("IGQVJXeHJnUDJIS3NFcFpxTFdma2FRWkZAQT2o1bHhPQXNCT0ZAvMmFCNUlRb2Rkb1M3cjhDeGExb3EwRmFkdFpuWWpaUGViRlRQS3JSSDd5VGswY1h1UF9XaDFPbzNnUlhSZAVJDb0U4RmNBYUFJSTRsYwZDZD");
+        }
+
+        throw $this->createNotFoundException();
     }
 }

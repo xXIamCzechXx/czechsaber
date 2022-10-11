@@ -7,6 +7,11 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class UserNormalizer {
 
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
@@ -41,7 +46,7 @@ class UserNormalizer {
 
     public function calculateScores($users)
     {
-        foreach ($users as $key => $user) {
+        foreach ($users as $user) {
             $mapArray = array();
             $scores = $user->getTournamentsScores();
 

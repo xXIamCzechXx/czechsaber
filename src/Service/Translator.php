@@ -8,6 +8,11 @@ use Doctrine\ORM\EntityManagerInterface;
 class Translator {
 
     /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    /**
      * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em) {
