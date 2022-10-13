@@ -53,7 +53,6 @@ $(document).ready(function ()
         url: '/instagram-token',
         method: 'POST'
     }).then(function(response) {
-        console.log(response);
         var userFeed = new Instafeed({
             get: 'user',
             target: "instafeed-container",

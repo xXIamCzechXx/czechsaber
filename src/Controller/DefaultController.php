@@ -80,7 +80,7 @@ class DefaultController extends BaseController
         $response = new Response();
         // This prevents from accessing route directrly from browser because this token is sensitive
         if ($request->isXmlHttpRequest()) {
-            return $response->setContent("IGQVJXeHJnUDJIS3NFcFpxTFdma2FRWkZAQT2o1bHhPQXNCT0ZAvMmFCNUlRb2Rkb1M3cjhDeGExb3EwRmFkdFpuWWpaUGViRlRQS3JSSDd5VGswY1h1UF9XaDFPbzNnUlhSZAVJDb0U4RmNBYUFJSTRsYwZDZD");
+            return $response->setContent("IGQVJXQWZAiRHExeTRtZAU5oUDV5T0x3VHBYZAjUxSDB0cEpCNUN5bHc2WVE0NGo2akFFbFhKZA1FnelJ2U2xNQWJOSm5NcmtkdEJWRGRMVDVSQ21XODNLTGUxU2Vyd3JJbXIzcVF4R3R1NHpGeUowQmVvWgZDZD");
         }
 
         throw $this->createNotFoundException();

@@ -2,7 +2,7 @@
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="editor/img/sidebar-1.jpg">
         <div class="logo">
             <a href="{{ path('homepage') }}" class="simple-text logo-normal">
-                {{ title }}
+                {{ title is defined ? title : '' }}
             </a>
         </div>
         <div class="sidebar-wrapper">
@@ -25,6 +25,7 @@
                 {% endblock %}
                 {% block uzivatele %}
                     <li class="nav-item ">
+                        <div class="menu-arrow menu-arrow-closed" data-value="users-index"></div>
                         <a class="nav-link" href="{{ path('editor_users') }}">
                             <i class="material-icons">person</i>
                             <p>Uživatelé</p>
@@ -32,7 +33,7 @@
                     </li>
                 {% endblock %}
                 {% block badges %}
-                    <li class="nav-item " style="margin-left: 30px;">
+                    <li class="nav-item users-index closed" style="margin-left: 30px;">
                         <a class="nav-link" href="{{ path('editor_users_badges') }}">
                             <i class="fa-solid fa-id-card-clip"></i>
                             <p>Badge</p>
@@ -40,7 +41,7 @@
                     </li>
                 {% endblock %}
                 {% block hdms %}
-                    <li class="nav-item " style="margin-left: 30px;">
+                    <li class="nav-item users-index closed" style="margin-left: 30px;">
                         <a class="nav-link" href="{{ path('editor_users_hdms') }}">
                             <i class="fa-solid fa-vr-cardboard"></i>
                             <p>Headsety</p>
@@ -123,7 +124,7 @@
                 {% endblock %}
                 {% block discord %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('editor_tournament_scores') }}">
+                        <a class="nav-link" href="{{ path('editor_discord') }}">
                             <i class="fa-brands fa-discord"></i>
                             <p>Discord</p>
                         </a>

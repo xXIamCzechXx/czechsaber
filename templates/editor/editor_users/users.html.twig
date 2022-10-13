@@ -6,7 +6,8 @@
     {% embed "editor/utilities/sidebar.html.twig" %}
         {% block uzivatele %}
             <li class="nav-item active  ">
-                <a class="nav-link" href="{{ path('editor_users') }}">
+                <div class="menu-arrow menu-arrow-closed" data-value="users-index"></div>
+                <a class="nav-link menu-arrow-closed" href="{{ path('editor_users') }}">
                     <i class="material-icons">person</i>
                     <p>Uživatelé</p>
                 </a>

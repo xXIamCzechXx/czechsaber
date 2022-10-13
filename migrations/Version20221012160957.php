@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220621214402 extends AbstractMigration
+final class Version20221012160957 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,14 @@ final class Version20220621214402 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE tournaments_maps (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, bsr VARCHAR(64) DEFAULT NULL, max_score INT DEFAULT NULL, difficulty VARCHAR(64) DEFAULT NULL, pool VARCHAR(64) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE webhooks (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(64) DEFAULT NULL, slug VARCHAR(128) NOT NULL, platform VARCHAR(64) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE user CHANGE scoresaber_id scoresaber_id BIGINT DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE tournaments_maps');
+        $this->addSql('DROP TABLE webhooks');
+        $this->addSql('ALTER TABLE user CHANGE scoresaber_id scoresaber_id BIGINT DEFAULT 0');
     }
 }
